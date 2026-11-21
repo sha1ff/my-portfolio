@@ -1,0 +1,552 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mohammed Shaif | Junior React Developer</title>
+  <meta name="description" content="Portfolio of Mohammed Shaif, Junior React Developer." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #d9dbda;
+      --bg-alt: #eceeed;
+      --text: #1d1f2b;
+      --muted: #3a3d4a;
+      --line: #1d1f2b;
+      --accent: #1d1f2b;
+      --serif: "Cormorant Garamond", Georgia, serif;
+      --sans: "Roboto", Arial, sans-serif;
+      --max: 960px;
+      --gutter: 16px;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) {
+        --bg: #1b1d24;
+        --bg-alt: #23262f;
+        --text: #eceeed;
+        --muted: #c4c7cf;
+        --line: #eceeed;
+        --accent: #eceeed;
+      }
+    }
+    :root[data-theme="dark"] {
+      --bg: #1b1d24;
+      --bg-alt: #23262f;
+      --text: #eceeed;
+      --muted: #c4c7cf;
+      --line: #eceeed;
+      --accent: #eceeed;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--sans);
+      font-weight: 300;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+
+    .container {
+      width: 100%;
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 var(--gutter);
+    }
+
+    section { padding: 96px 0; }
+    .section-alt { background: var(--bg-alt); }
+
+    /* Header */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: var(--bg);
+    }
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      min-height: 72px;
+      flex-wrap: wrap;
+      padding: 12px 0;
+    }
+    .logo {
+      font-family: var(--serif);
+      font-size: 1.5rem;
+      font-weight: 500;
+    }
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 1rem;
+      font-weight: 400;
+      position: relative;
+      padding: 4px 0;
+    }
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: 1px;
+      background: var(--line);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.25s ease;
+    }
+    .nav-links a:hover::after,
+    .nav-links a:focus-visible::after,
+    .nav-links a.active::after { transform: scaleX(1); }
+
+    /* Hero */
+    .hero { padding: 72px 0 64px; }
+    .hero h1 {
+      font-family: var(--serif);
+      font-weight: 400;
+      font-size: clamp(2.4rem, 6vw, 4.25rem);
+      line-height: 1.12;
+      max-width: 18ch;
+    }
+    .hero .role {
+      margin-top: 20px;
+      font-size: 1.1rem;
+      color: var(--muted);
+      font-weight: 400;
+    }
+    .hero-image {
+      margin-top: 48px;
+      height: clamp(220px, 40vw, 400px);
+      background: linear-gradient(135deg, #3b3f4d 0%, #1d1f2b 100%);
+      border-radius: 2px;
+      display: grid;
+      place-items: center;
+      color: #eceeed;
+      font-family: var(--serif);
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      letter-spacing: 0.02em;
+    }
+    .hero-image span { opacity: 0.8; }
+
+    /* Buttons */
+    .btn {
+      display: inline-block;
+      padding: 14px 28px;
+      border: 1px solid var(--line);
+      color: var(--text);
+      font-size: 0.95rem;
+      letter-spacing: 0.04em;
+      transition: background 0.25s ease, color 0.25s ease;
+    }
+    .btn:hover, .btn:focus-visible {
+      background: var(--accent);
+      color: var(--bg);
+    }
+    .btn-solid {
+      background: var(--accent);
+      color: var(--bg);
+      border-color: var(--accent);
+    }
+    .btn-solid:hover { opacity: 0.85; background: var(--accent); color: var(--bg); }
+
+    /* Headings */
+    .eyebrow {
+      font-size: 0.85rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+    h2 {
+      font-family: var(--serif);
+      font-weight: 400;
+      font-size: clamp(2rem, 4.5vw, 3.25rem);
+      line-height: 1.15;
+      max-width: 22ch;
+    }
+    h3 {
+      font-family: var(--serif);
+      font-weight: 500;
+      font-size: 1.6rem;
+      line-height: 1.25;
+    }
+
+    /* About */
+    .about-grid {
+      display: grid;
+      gap: 40px;
+      grid-template-columns: 1fr;
+    }
+    .about-grid p {
+      font-size: 1.05rem;
+      color: var(--muted);
+      margin-bottom: 16px;
+      max-width: 60ch;
+    }
+    .skills {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 24px;
+    }
+    .skills li {
+      border: 1px solid var(--line);
+      padding: 6px 14px;
+      font-size: 0.9rem;
+    }
+
+    /* Projects */
+    .projects-grid {
+      display: grid;
+      gap: 56px 40px;
+      grid-template-columns: 1fr;
+      margin-top: 56px;
+    }
+    .project-thumb {
+      height: 220px;
+      background: linear-gradient(135deg, #5a5f70 0%, #2b2e3a 100%);
+      margin-bottom: 24px;
+      display: grid;
+      place-items: center;
+      color: #eceeed;
+      font-family: var(--serif);
+      font-size: 1.4rem;
+    }
+    .project p {
+      color: var(--muted);
+      margin: 12px 0 28px;
+      max-width: 40ch;
+    }
+    .project .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      list-style: none;
+      margin: 0 0 24px;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+    .project .tags li::after { content: " ·"; }
+    .project .tags li:last-child::after { content: ""; }
+
+    /* Testimonials */
+    .testimonials {
+      display: grid;
+      gap: 40px;
+      grid-template-columns: 1fr;
+      margin-top: 56px;
+    }
+    .testimonial p {
+      font-size: 1.05rem;
+      color: var(--muted);
+      max-width: 44ch;
+    }
+    .testimonial cite {
+      display: block;
+      margin-top: 20px;
+      font-family: var(--serif);
+      font-size: 1.25rem;
+      font-style: normal;
+    }
+
+    /* Contact */
+    .contact-grid {
+      display: grid;
+      gap: 48px;
+      grid-template-columns: 1fr;
+    }
+    .socials {
+      display: flex;
+      gap: 22px;
+      margin-top: 24px;
+    }
+    .socials a {
+      width: 28px;
+      height: 28px;
+      display: inline-grid;
+      place-items: center;
+    }
+    .socials svg { width: 26px; height: 26px; fill: var(--text); transition: opacity 0.2s; }
+    .socials a:hover svg { opacity: 0.6; }
+    .contact-info p { font-size: 1.1rem; margin-bottom: 8px; }
+    .contact-info a { border-bottom: 1px solid transparent; }
+    .contact-info a:hover { border-bottom-color: var(--line); }
+
+    form.contact-form {
+      margin-top: 24px;
+      display: grid;
+      gap: 16px;
+    }
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: 14px 16px;
+      font: inherit;
+      color: var(--text);
+      background: transparent;
+      border: 1px solid var(--line);
+      border-radius: 0;
+    }
+    .contact-form textarea { min-height: 140px; resize: vertical; }
+    .contact-form input:focus-visible,
+    .contact-form textarea:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+    .contact-form button { justify-self: start; cursor: pointer; font: inherit; }
+
+    footer {
+      padding: 32px 0;
+      font-size: 0.9rem;
+      color: var(--muted);
+      border-top: 1px solid var(--line);
+    }
+    footer .container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    /* Mobile nav */
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: 1px solid var(--line);
+      color: var(--text);
+      padding: 6px 12px;
+      font: inherit;
+      cursor: pointer;
+    }
+
+    /* Tablet+ */
+    @media (min-width: 720px) {
+      section { padding: 120px 0; }
+      .about-grid { grid-template-columns: 1fr 1fr; }
+      .projects-grid { grid-template-columns: 1fr 1fr; }
+      .testimonials { grid-template-columns: 1fr 1fr; }
+      .contact-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    /* Mobile nav collapse */
+    @media (max-width: 560px) {
+      .menu-toggle { display: inline-block; }
+      .nav-links {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        gap: 14px;
+        padding-top: 8px;
+      }
+      .nav-links.open { display: flex; }
+      .nav { flex-wrap: wrap; }
+      .hero { padding-top: 48px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      * { transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="container nav">
+      <a href="#top" class="logo" aria-label="Mohammed Shaif home">Mohammed Shaif</a>
+      <button class="menu-toggle" aria-expanded="false" aria-controls="nav-links">Menu</button>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#about">About me</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#testimonials">Testimonials</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <!-- Hero -->
+    <section class="hero">
+      <div class="container">
+        <h1>Building fast, accessible user interfaces with React</h1>
+        <p class="role">Mohammed Shaif, Junior React Developer</p>
+        <div class="hero-image" role="img" aria-label="Placeholder for a photo of Mohammed Shaif">
+          <span>Your photo here</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section id="about" class="section-alt">
+      <div class="container about-grid">
+        <div>
+          <p class="eyebrow">About me</p>
+          <h2>Turning designs into clean, working interfaces</h2>
+        </div>
+        <div>
+          <p>
+            I'm a junior React developer who enjoys turning ideas and designs into responsive,
+            accessible web apps. I care about readable components, sensible state management,
+            and code that the next person can understand.
+          </p>
+          <p>
+            I'm currently looking for my first full-time role where I can keep learning, ship
+            real features, and grow into a stronger engineer.
+          </p>
+          <ul class="skills" aria-label="Skills">
+            <li>React</li>
+            <li>JavaScript (ES6+)</li>
+            <li>TypeScript</li>
+            <li>HTML &amp; CSS</li>
+            <li>Git</li>
+            <li>REST APIs</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects">
+      <div class="container">
+        <p class="eyebrow">Selected work</p>
+        <h2>Get to know my projects</h2>
+
+        <div class="projects-grid">
+          <article class="project">
+            <div class="project-thumb">Project one</div>
+            <h3>Project title one</h3>
+            <ul class="tags">
+              <li>React</li>
+              <li>Vite</li>
+              <li>CSS Modules</li>
+            </ul>
+            <p>A short description of what this project does and the problem it solves.</p>
+            <a class="btn" href="#" target="_blank" rel="noopener">See the project</a>
+          </article>
+
+          <article class="project">
+            <div class="project-thumb">Project two</div>
+            <h3>Project title two</h3>
+            <ul class="tags">
+              <li>React</li>
+              <li>REST API</li>
+              <li>Tailwind</li>
+            </ul>
+            <p>A second short description highlighting a feature you built and what you learned.</p>
+            <a class="btn" href="#" target="_blank" rel="noopener">See the project</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section id="testimonials" class="section-alt">
+      <div class="container">
+        <p class="eyebrow">What people say</p>
+        <h2>Kind words from colleagues and clients</h2>
+
+        <div class="testimonials">
+          <blockquote class="testimonial">
+            <p>"Replace this with a real quote from a teammate or client about your work."</p>
+            <cite>Name, Role</cite>
+          </blockquote>
+          <blockquote class="testimonial">
+            <p>"Replace this with another quote that describes how you work and collaborate."</p>
+            <cite>Name, Role</cite>
+          </blockquote>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+      <div class="container contact-grid">
+        <div>
+          <p class="eyebrow">Find me on these platforms</p>
+          <h2>Let's build something together</h2>
+          <div class="socials">
+            <a href="#" aria-label="LinkedIn" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.75h4V21H3zM9.5 9.75h3.8v1.6h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21h-4v-4.9c0-1.17-.02-2.68-1.63-2.68-1.64 0-1.89 1.28-1.89 2.6V21h-4z"/></svg>
+            </a>
+            <a href="#" aria-label="GitHub" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .5C5.65.5.5 5.65.5 12a11.5 11.5 0 0 0 7.86 10.92c.58.1.79-.25.79-.56v-2.1c-3.2.7-3.87-1.37-3.87-1.37-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.28 1.18-3.09-.12-.29-.51-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.78 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.18 1.83 1.18 3.09 0 4.42-2.69 5.39-5.25 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/></svg>
+            </a>
+            <a href="#" aria-label="Twitter / X" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.9 2H22l-6.77 7.74L23.2 22h-6.25l-4.9-6.4L6.5 22H3.4l7.24-8.28L2.8 2h6.4l4.43 5.86L18.9 2zm-1.1 18h1.73L7.3 3.9H5.44L17.8 20z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="contact-info">
+          <p class="eyebrow">Contact me</p>
+          <p><a href="mailto:hello@example.com">hello@example.com</a></p>
+          <p><a href="tel:+10000000000">+1 000 000 0000</a></p>
+          <p>Available for remote work</p>
+
+          <form class="contact-form" action="mailto:hello@example.com" method="post" enctype="text/plain">
+            <input type="text" name="name" placeholder="Your name" required />
+            <input type="email" name="email" placeholder="Your email" required />
+            <textarea name="message" placeholder="Tell me about your project" required></textarea>
+            <button class="btn btn-solid" type="submit">Send message</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container">
+      <span>&copy; <span id="year"></span> Mohammed Shaif</span>
+      <span>Built with HTML, CSS and a little JavaScript</span>
+    </div>
+  </footer>
+
+  <script>
+    // Year in footer
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Mobile menu toggle
+    const toggle = document.querySelector(".menu-toggle");
+    const links = document.getElementById("nav-links");
+    toggle.addEventListener("click", () => {
+      const open = links.classList.toggle("open");
+      toggle.setAttribute("aria-expanded", String(open));
+    });
+    links.querySelectorAll("a").forEach((a) =>
+      a.addEventListener("click", () => {
+        links.classList.remove("open");
+        toggle.setAttribute("aria-expanded", "false");
+      })
+    );
+
+    // Highlight the nav link for the section in view
+    const sectionLinks = [...links.querySelectorAll("a")];
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          sectionLinks.forEach((a) =>
+            a.classList.toggle("active", a.getAttribute("href") === "#" + entry.target.id)
+          );
+        });
+      },
+      { rootMargin: "-40% 0px -55% 0px" }
+    );
+    document.querySelectorAll("section[id]").forEach((s) => observer.observe(s));
+  </script>
+</body>
+</html>
